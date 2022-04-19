@@ -1,5 +1,4 @@
 import json
-from typing import Union
 
 class GithubEventCalculatorService:
     def get_events(self):
@@ -162,7 +161,7 @@ def call_tests():
     #     [{'event_type': 'PullRequestReviewEvent', 'score_impact': 4, 'id': '21354028537', 'repo_name': 'codetracker-learning/LAB-pet-adoption', 'repo_link': 'https://github.com/codetracker-learning/LAB-pet-adoption'}, {'event_type': 'WatchEvent', 'score_impact': 3, 'id': '21354005019', 'repo_name': 'codetracker-learning/LAB-pet-adoption', 'repo_link': 'https://github.com/codetracker-learning/LAB-pet-adoption'}, {'event_type': 'CommitCommentEvent', 'score_impact': 1, 'id': '21353998726', 'repo_name': 'codetracker-learning/LAB-pet-adoption', 'repo_link': 'https://github.com/codetracker-learning/LAB-pet-adoption'}])
     # test_event_info("testuser", [])
 
-def get_user_events_response(username: str) -> Union[list, dict]:
+def get_user_events_response(username):
     """
     Returns a list of events for the passed in username.
 
@@ -173,7 +172,8 @@ def get_user_events_response(username: str) -> Union[list, dict]:
             event_data (list): A list of events for the username
     """
     # Opening JSON file
-    f = open('/home/coderpad/data/githubMockData.json')
+    # f = open('/home/coderpad/data/githubMockData.json') # for Coderpad
+    f = open('./githubMockData.json')
     
     # returns JSON object as
     # a dictionary
@@ -189,7 +189,7 @@ def get_user_events_response(username: str) -> Union[list, dict]:
             "documentation_url": "https://docs.github.com/rest/reference/users#get-a-user"
         }
 
-def get_user_info(username:str) -> dict[str, str]:
+def get_user_info(username):
     """
     Returns a dictionary with user information for the passed in username.
 
@@ -200,7 +200,8 @@ def get_user_info(username:str) -> dict[str, str]:
             user_info (dict): A dictionary containing user information
     """
     # Opening JSON file
-    f = open('/home/coderpad/data/githubMockData.json')
+    # f = open('/home/coderpad/data/githubMockData.json') # for Coderpad
+    f = open('./githubMockData.json')
     
     # returns JSON object as
     # a dictionary
