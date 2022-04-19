@@ -1,34 +1,15 @@
 import json
+from typing import Union
 
-# Description: We want to build out a service that allows callers to get specific information about a user from just a GitHub username.
-
-# Objective 1: Event score
-# We want the response to contain an event score for the passed in user.
-# The score is calculated from the “type” property, where:
-# - PushEvent = 5 points
-# - PullRequestReviewEvent = 4 points
-# - WatchEvent = 3 points.
-# - CreateEvent = 2 points.
-# - Every other event = 1 point.
-    # Dict defining the desired output:
-
-    # return {
-    #     "user_score": None,
-    # }
 class GithubEventCalculatorService:
     def get_events(self):
-        print("Requesting https://api.github.com/users/%s/events" %self.username)
-        # Here is where we will make the "API Call" to GitHub Events using get_user_events_response()
-        # This function takes in a username
+        # This is where we will make the "API Call" to GitHub Events using get_user_events_response()
+        print("Requesting https://api.github.com/users/%s/events" %"ADD_USERNAME_HERE")
         pass
 
     def get_response(self):
         events = self.get_events()
         pass
-
-
-
-
 
 
 def test_response_score(username, expected_score):
@@ -136,7 +117,7 @@ def test_event_info(username, expected_output):
 
 def call_tests():
     print("**********************************")
-    print("Testing Score in Response")
+    print("Obj 1: Testing Score in Response")
     print("**********************************\n")
     test_response_score("TrinityChristiana", 70)
     test_response_score("w3cj", 110)
@@ -144,7 +125,12 @@ def call_tests():
     test_response_score("testuser", 0)
 
     # print("**********************************")
-    # print("Testing User ID in Response")
+    # print("Obj 2: Testing invalid user Response")
+    # print("**********************************\n")
+    # test_invalid_username("InvalidUser")
+    
+    # print("**********************************")
+    # print("Obj 3: Testing User ID in Response")
     # print("**********************************\n")
     # test_user_id("TrinityChristiana", 31781724)
     # test_user_id("w3cj", 14241866)
@@ -152,20 +138,16 @@ def call_tests():
     # test_user_id("testuser", 19480)
 
     # print("**********************************")
-    # print("Testing Username in Response")
+    # print("Obj 3: Testing Username in Response")
     # print("**********************************\n")
     # test_username("TrinityChristiana")
     # test_username("w3cj")
     # test_username("JhonDoe")
     # test_username("testuser")
 
-    # print("**********************************")
-    # print("Testing invalid user Response")
-    # print("**********************************\n")
-    # test_invalid_username("InvalidUser")
     
     # print("**********************************")
-    # print("Testing Event Impact Response")
+    # print("Obj 4: Testing Event Impact Response")
     # print("**********************************\n")
     # test_event_impact("JhonDoe", [
     #     {'event_type': 'PullRequestReviewEvent', 'score_impact': 4}, {'event_type': 'WatchEvent', 'score_impact': 3}, {'event_type': 'CommitCommentEvent', 'score_impact': 1}
@@ -174,13 +156,22 @@ def call_tests():
 
 
     # print("**********************************")
-    # print("Testing Event Info Response")
+    # print("Obj 5: Testing Event Info Response")
     # print("**********************************\n")
     # test_event_info("JhonDoe", 
     #     [{'event_type': 'PullRequestReviewEvent', 'score_impact': 4, 'id': '21354028537', 'repo_name': 'codetracker-learning/LAB-pet-adoption', 'repo_link': 'https://github.com/codetracker-learning/LAB-pet-adoption'}, {'event_type': 'WatchEvent', 'score_impact': 3, 'id': '21354005019', 'repo_name': 'codetracker-learning/LAB-pet-adoption', 'repo_link': 'https://github.com/codetracker-learning/LAB-pet-adoption'}, {'event_type': 'CommitCommentEvent', 'score_impact': 1, 'id': '21353998726', 'repo_name': 'codetracker-learning/LAB-pet-adoption', 'repo_link': 'https://github.com/codetracker-learning/LAB-pet-adoption'}])
     # test_event_info("testuser", [])
 
-def get_user_events_response(username): 
+def get_user_events_response(username: str) -> Union[list, dict]:
+    """
+    Returns a list of events for the passed in username.
+
+        Parameters:
+            username (str): A string
+
+        Returns:
+            event_data (list): A list of events for the username
+    """
     # Opening JSON file
     f = open('/home/coderpad/data/githubMockData.json')
     
@@ -198,7 +189,16 @@ def get_user_events_response(username):
             "documentation_url": "https://docs.github.com/rest/reference/users#get-a-user"
         }
 
-def get_user_info(username):
+def get_user_info(username:str) -> dict[str, str]:
+    """
+    Returns a dictionary with user information for the passed in username.
+
+        Parameters:
+            username (str): A string
+
+        Returns:
+            user_info (dict): A dictionary containing user information
+    """
     # Opening JSON file
     f = open('/home/coderpad/data/githubMockData.json')
     
