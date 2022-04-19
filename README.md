@@ -1,17 +1,44 @@
 # Github Event Score
-API Endpoint: https://api.github.com/users/:username/events
 
-[Documentation](https://docs.github.com/en/rest/reference/activity#list-events-for-the-authenticated-user)
+## Description
 
-## Acceptence Criteria:
-1. There is an input on the page for a user to type their github username
-1. When the user has typed their username in the input and clicks a button for the form, their username is used to get thir girhub events
-1. A score for their events have been calculated given the following criteria:
-   - The score is calculated from the "type" property, where
-     - PushEvent = 5 points
-     - PullRequestReviewEvent = 4 points
-     - WatchEvent = 3 points.
-     - CreateEvent = 2 points.
-     - Every other event = 1 point.
-1. The calculated score are printed on the DOM using a preexisting Components
-1. Above the user's score, text that reads "{username}'s Score" shows up on the DOM
+You are driving a pairing session with a couple of people on your team (your interviewers). During this session, we want to build out a service that allows callers to get some information about a Github user and their GitHub activity.
+
+This work is separated into 5 objectives. You have the first one fully available to you, while the Product Manager and Scrum Master are still working on writing up the tickets for the other 4. They should be done by the time you've completed your first objective.
+
+## Objective 1: Calculate User's Event Score
+
+The callers of this service want to be able to pass in a username and for the response to contain passed in the user's event score using information from GitHub's Event API.
+
+### Notes
+
+- We will not be calling the API directly, we will be using the function `get_user_events_response`. This takes in a username and returns a list of events for that user.
+- The score is calculated from the “type” property of each event, where:
+  - PushEvent = 5 points
+  - PullRequestReviewEvent = 4 points
+  - WatchEvent = 3 points.
+  - CreateEvent = 2 points.
+  - Every other event = 1 point.
+  - Here is what the desired output looks like:
+
+    ```python
+    {
+        "user_score": None,
+    }
+    ```
+
+## Objective 2: Username Validation
+
+- Coming Soon
+
+## Objective 3: User Information
+
+- Coming Soon
+
+## Objective 4: Event Impact on Score
+
+- Coming Soon
+
+## Objective 5: Event Information
+
+- Coming Soon
